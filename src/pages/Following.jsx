@@ -4,7 +4,6 @@ import { useAuth } from "../context/AuthContext";
 import { db } from "../firebase";
 import { doc, onSnapshot, updateDoc,getDoc, getDocs, collection } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
-import { all } from "three/tsl";
 
 export default function Following() {
   const { user } = useAuth();
