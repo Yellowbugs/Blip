@@ -3,7 +3,6 @@ import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import GlassCard from '../components/GlassCard';
 import LoadingOverlay from '../components/LoadingOverlay';
-import { load } from 'three/examples/jsm/libs/opentype.module.js';
 
 export default function Login() {
   const { user, login, register } = useAuth();
