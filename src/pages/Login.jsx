@@ -2,15 +2,18 @@ import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import GlassCard from '../components/GlassCard';
+import LoadingOverlay from '../components/LoadingOverlay';
+import { load } from 'three/examples/jsm/libs/opentype.module.js';
 
 export default function Login() {
   const { user, login, register } = useAuth();
   const [mode, setMode] = useState('login');
   const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [password, setPassword] = useState('');
-  const [name, setName] = useState('');
+  const [pfp, setPfp] = useState('');
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
 
@@ -19,7 +22,10 @@ export default function Login() {
     e.preventDefault();
     setLoading(true);
     try {
-      if(mode==='register') register(email, password, name);
+      if(mode==='register'){
+        await register({ email, password, username, firstName, lastName, pfp});
+        login(email, password);
+      }
       else if(!login(email, password)) alert('Invalid credentials');
     } finally {
       setLoading(false);
@@ -28,11 +34,12 @@ export default function Login() {
   return (
     <div className="min-h-screen flex items-center justify-center p-4">
       <div className="w-full max-w-md">
+      {loading && <LoadingOverlay />}
         <GlassCard>
-          <h1 className="text-2xl text-primary font-bold mb-2">Daily Caption</h1>
-          <p className="text-slate-300 mb-4">One photo. Everyone captions. Daily challenge.</p>
+          <h1 className="text-2xl text-primary font-bold mb-2 text-center">Blip</h1>
+          <p className="text-slate-300 mb-4 text-center">One daily photo. Everyone captions.</p>
           <form onSubmit={submit} className="space-y-3">
-            {mode==='register' && <input value={name} onChange={e=>setName(e.target.value)} placeholder="Username" className="w-full p-2 rounded-md bg-transparent border border-white/10" />}
+            {mode==='register' && <input value={username} onChange={e=>setUsername(e.target.value)} placeholder="Username" className="w-full p-2 rounded-md bg-transparent border border-white/10" />}
             {mode==='register' && <input value={firstName} onChange={e=>setFirstName(e.target.value)} placeholder="First Name" className="w-full p-2 rounded-md bg-transparent border border-white/10" />}
             {mode==='register' && <input value={lastName} onChange={e=>setLastName(e.target.value)} placeholder="Last Name" className="w-full p-2 rounded-md bg-transparent border border-white/10" />}
             <input value={email} onChange={e=>setEmail(e.target.value)} placeholder="Email" className="w-full p-2 rounded-md bg-transparent border border-white/10" />
@@ -47,3 +54,4 @@ export default function Login() {
     </div>
   );
 }
+

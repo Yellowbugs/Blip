@@ -1,0 +1,8 @@
+[
+    {
+      "origin": ["http://localhost:3000", "https://blip-beryl.vercel.app/login"],
+      "method": ["GET", "POST", "PUT", "DELETE"],
+      "maxAgeSeconds": 3600
+    }
+  ]
+  
