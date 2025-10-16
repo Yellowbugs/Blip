@@ -11,7 +11,7 @@ const firebaseConfig = {
   apiKey: "AIzaSyCYytbdthyLJTBB1eO8MdeXSm-tpyayiAY",
   authDomain: "blip-3eb10.firebaseapp.com",
   projectId: "blip-3eb10",
-  storageBucket: "blip-3eb10.firebasestorage.app",
+  storageBucket: "gs://blip-3eb10.firebasestorage.app",
   messagingSenderId: "17399215383",
   appId: "1:17399215383:web:e1e913e08c1580eac93352",
   measurementId: "G-LXHBFVH9KG"

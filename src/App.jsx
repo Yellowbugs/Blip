@@ -57,7 +57,7 @@ function AppRoutes() {
             />
           }
         />
-        <Route path="/" element={<Home users={users} />} />
+        <Route path="/" element={<Home currentUser={currentUser} />} />
       </Routes>
     </Router>
   );
